@@ -1,0 +1,824 @@
+/* ============================= */
+/* RESET CƠ BẢN */
+/* ============================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #111827;
+}
+
+/* ============================= */
+/* TRANG LOGIN */
+/* ============================= */
+
+/* Layout chung cho login */
+.auth-body {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background slideshow */
+.auth-bg {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.05);
+    filter: blur(2px);
+    transition: opacity 0.6s ease;
+    opacity: 1;
+    z-index: 0;
+}
+
+/* Lớp phủ để card nổi hơn */
+.auth-bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.4), rgba(15, 23, 42, 0.8));
+    z-index: 1;
+}
+
+/* Card login nằm giữa */
+.auth-center {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* Card login */
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background-color: rgba(255, 255, 255, 0.96);
+    border-radius: 18px;
+    padding: 32px 28px;
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(8px);
+}
+
+/* Logo + tiêu đề */
+.auth-logo {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.logo-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.auth-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #111827;
+}
+
+/* Form login */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #374151;
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+    background-color: #ffffff;
+}
+
+/* Nút bấm */
+.btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 15px;
+    transition: transform 0.05s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+/* ============================= */
+/* Nút Sửa đổi 2 trạng thái */
+/* ============================= */
+
+/* Trạng thái bình thường – màu xanh lá */
+.btn-edit {
+    background-color: #0f766e;
+    color: #ffffff;
+    border: 1px solid #0f766e;
+}
+
+/* Hover */
+.btn-edit:hover {
+    background-color: #0d615b;
+}
+
+/* Trạng thái khi BẬT chỉnh sửa – nền trắng, viền đỏ */
+.btn-edit-active {
+    background-color: #ffffff !important;
+    color: #dc2626 !important;
+    border: 2px solid #dc2626 !important;
+    box-shadow: none !important;
+}
+
+
+.btn-primary {
+    background-color: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.55);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.55);
+}
+
+/* Nút primary trong card login full width */
+.auth-card .btn-primary {
+    width: 100%;
+}
+
+/* Link phụ */
+.auth-extra {
+    margin-top: 8px;
+    text-align: right;
+}
+
+.forgot-link {
+    font-size: 13px;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive login */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 24px 20px;
+    }
+}
+
+/* ============================= */
+/* DASHBOARD */
+/* ============================= */
+
+.dashboard-body {
+    min-height: 100vh;
+    display: flex;
+    background: #f3f4f6;
+}
+
+/* Sidebar trái */
+.sidebar {
+    width: 240px;
+    background: #1e293b;
+    color: #ffffff;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.sidebar-logo img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-menu a {
+    padding: 14px 20px;
+    text-decoration: none;
+    color: #cbd5e1;
+    font-size: 15px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: #334155;
+    color: #ffffff;
+}
+
+.sidebar-menu a.active {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+/* Main khu bên phải */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header topbar */
+.topbar {
+    height: 64px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Vùng content */
+.content {
+    padding: 24px;
+}
+
+/* Thẻ thống kê */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #475569;
+}
+
+.stat-card p {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1e40af;
+}
+
+/* Card biểu đồ placeholder */
+.chart-card {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.chart-placeholder {
+    height: 260px;
+    border-radius: 12px;
+    background: #e2e8f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #475569;
+    font-size: 15px;
+    font-style: italic;
+}
+
+/* ============================= */
+/* QUẢN LÝ HỌC SINH - LIST */
+/* ============================= */
+
+.page-title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* toolbar: search + buttons */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+/* search bên trái, không chiếm full width */
+.search-box {
+    flex: 0 1 45%;
+    max-width: 420px;
+    min-width: 260px;
+}
+
+/* nhóm nút bên phải */
+.toolbar-actions {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+}
+
+.toolbar-actions-main {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* đảm bảo nút Thêm và Sửa đổi gần bằng nhau */
+.toolbar-actions-main .btn {
+    min-width: 110px;
+    text-align: center;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    background-color: #ffffff;
+}
+
+.search-box input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+/* buttons (dùng cho nơi khác nếu cần) */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* các loại nút phụ */
+.btn-secondary {
+    background-color: #0f766e;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.35);
+}
+
+.btn-secondary:hover {
+    background-color: #0d615b;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.35);
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background-color: #eff6ff;
+}
+
+/* bảng dữ liệu */
+.table-wrapper {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.data-table thead {
+    background: #f1f5f9;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table th {
+    font-weight: 500;
+    color: #475569;
+    white-space: nowrap;
+}
+
+/* hover mặc định (sẽ override bên dưới cho row-selected) */
+.data-table tbody tr:hover:not(.row-selected) {
+    background: #f9fafb;
+}
+
+/* pagination */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 14px;
+}
+
+.page-link {
+    min-width: 32px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none;
+    color: #4b5563;
+    background: #ffffff;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.page-link:hover {
+    background: #eff6ff;
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+.page-link.active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+.page-link.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ============================= */
+/* MODAL THÊM / SỬA HỌC SINH */
+/* ============================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    max-width: 720px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.6);
+    padding: 20px 22px 18px;
+}
+
+/* header modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.modal-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 0 4px;
+}
+
+.modal-close:hover {
+    color: #111827;
+}
+
+/* body modal */
+.modal-body {
+    padding-top: 4px;
+}
+
+/* lưới 2 cột */
+.modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+}
+
+/* cho ô Địa chỉ full width */
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+/* select trong form dùng chung style với input */
+.modal select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.modal select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+    background-color: #ffffff;
+}
+
+/* footer modal */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+/* responsive modal */
+@media (max-width: 640px) {
+    .modal {
+        margin: 0 12px;
+        padding: 18px 16px 16px;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================= */
+/* CHẾ ĐỘ SỬA ĐỔI HỌC SINH       */
+/* ============================= */
+
+/* Cột checkbox luôn chừa chỗ, không làm dịch chuyển nội dung */
+.select-col,
+.select-cell {
+    width: 40px;
+    text-align: center;
+}
+
+/* Checkbox ẩn khi chưa bật chế độ sửa đổi (nhưng vẫn chiếm chỗ) */
+.row-select-checkbox {
+    visibility: hidden;
+}
+
+body.select-mode .row-select-checkbox {
+    visibility: visible;
+}
+
+/* Thanh 3 nút Sửa / Xóa / Thoát chỉnh sửa – nằm bên phải dưới toolbar */
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    min-height: 40px;       /* luôn giữ chiều cao, bảng không bị nhảy */
+    visibility: hidden;
+    pointer-events: none;
+}
+
+body.select-mode .edit-actions {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Dòng đang được chọn để sửa / xóa */
+.data-table tbody tr.row-selected {
+    background: #dbeafe;
+}
+
+/* Hover chỉ áp dụng cho dòng chưa được chọn (override cho rõ ràng) */
+.data-table tbody tr:hover:not(.row-selected) {
+    background: #f9fafb;
+}
+
+/* Nút Thoát chỉnh sửa: nền trắng, viền đỏ, chữ đỏ */
+.btn-ghost-danger {
+    background-color: #ffffff;
+    color: #dc2626;
+    border: 1px solid #dc2626;
+    box-shadow: none;
+}
+
+.btn-ghost-danger:hover {
+    background-color: #fee2e2;
+}
+
+/* Nút Sửa đổi active – đổi sang màu đỏ */
+.btn-toggle-active {
+    background-color: #dc2626;            /* đỏ */
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.35);
+}
+
+.btn-toggle-active:hover {
+    background-color: #b91c1c;
+}
+/* Nút Sửa đổi dạng viền đỏ – trạng thái bình thường */
+.btn-outline-danger {
+    background-color: #ffffff;
+    color: #dc2626;
+    border: 2px solid #dc2626;
+    border-radius: 999px;
+    padding: 10px 20px;
+    box-shadow: none;
+    font-weight: 500;
+}
+
+/* Hover */
+.btn-outline-danger:hover {
+    background-color: #fee2e2;
+}
+
+/* Khi bật chế độ chỉnh sửa – đổi thành nền đỏ */
+.btn-outline-danger.btn-toggle-active {
+    background-color: #dc2626;
+    color: #ffffff;
+    border-color: #dc2626;
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+}
+/* Nút Sửa đổi mặc định (màu xanh lá) */
+.btn-edit {
+    background-color: #0f766e;
+    color: #ffffff;
+    border: 1px solid #0f766e;
+}
+
+/* Khi hover */
+.btn-edit:hover {
+    background-color: #0d615b;
+}
+
+/* Khi BẬT chế độ chỉnh sửa → đổi style dạng viền đỏ */
+.btn-edit-active {
+    background-color: #ffffff !important;
+    color: #dc2626 !important;
+    border: 2px solid #dc2626 !important;
+    box-shadow: none !important;
+}
+/* ============================= */
+/* NHẬP ĐIỂM / QUY ĐỊNH / MÔN HỌC */
+/* ============================= */
+
+/* Hàng filter chọn khối, lớp, môn */
+.filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 160px;
+}
+
+.filter-label {
+    font-size: 14px;
+    color: #4b5563;
+}
+
+/* Input điểm trong bảng */
+.data-table input[type="number"] {
+    width: 72px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 13px;
+    outline: none;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.data-table input[type="number"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
+}
+
+/* Nhãn nhỏ kiểu tag */
+.tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+/* Lưới cấu hình quy định */
+.config-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px 16px;
+    margin-top: 10px;
+}
+
+.config-card {
+    background-color: #f9fafb;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    padding: 10px 12px;
+}
+
+.config-label {
+    font-size: 13px;
+    color: #4b5563;
+    margin-bottom: 4px;
+}
+
+.config-hint {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+/* Cho rules page – căn nút lưu */
+.rules-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý môn học</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="assets/uit_logo.png" alt="UIT Logo">
+            <span>QL Học Sinh</span>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="students.html">Quản lý học sinh</a>
+            <a href="subject_list.html" class="active">Quản lý môn học</a>
+            <a href="grade_select.html">Nhập điểm</a>
+            <a href="teaching_assignment.html">Phân công</a>
+            <a href="rules.html">Quy định</a>
+        </nav>
+
+
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- HEADER -->
+        <header class="topbar">
+            <div class="page-title">Quản lý môn học</div>
+            <div class="user-info">
+                <span>Xin chào, Admin</span>
+                <img src="assets/user.png" class="avatar" alt="user">
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <div class="toolbar">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm theo tên hoặc mã môn...">
+                </div>
+
+                <div class="toolbar-actions">
+                    <div class="toolbar-actions-main">
+                        <button class="btn btn-primary">Thêm</button>
+                        <button class="btn btn-outline">Sửa</button>
+                        <button class="btn btn-danger">Xóa</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Mã môn</th>
+                            <th>Tên môn</th>
+                            <th>Số tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MH001</td>
+                            <td>Toán</td>
+                            <td>60</td>
+                        </tr>
+                        <tr>
+                            <td>MH002</td>
+                            <td>Vật lý</td>
+                            <td>45</td>
+                        </tr>
+                        <tr>
+                            <td>MH003</td>
+                            <td>Ngữ văn</td>
+                            <td>60</td>
+                        </tr>
+                        <tr>
+                            <td>MH004</td>
+                            <td>Hóa học</td>
+                            <td>45</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div><!-- content -->
+    </div><!-- main -->
+
+</body>
+</html>

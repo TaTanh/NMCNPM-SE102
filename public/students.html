@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách học sinh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="assets/uit_logo.png" alt="UIT Logo">
+            <span>QL Học Sinh</span>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="students.html" class="active">Quản lý học sinh</a>
+            <a href="subject_list.html">Quản lý môn học</a>
+            <a href="grade_select.html">Nhập điểm</a>
+            <a href="teaching_assignment.html">Phân công</a>
+            <a href="rules.html">Quy định</a>
+        </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- HEADER -->
+        <header class="topbar">
+            <div class="page-title">Danh sách học sinh</div>
+            <div class="user-info">
+                <span>Xin chào, Admin</span>
+                <img src="assets/user.png" class="avatar" alt="user">
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- TOOLBAR: search trái, nút phải -->
+            <div class="toolbar">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm theo tên hoặc MSSV...">
+                </div>
+
+                <div class="toolbar-actions">
+                    <button class="btn btn-outline" id="btnExport">Xuất Excel</button>
+
+                    <div class="toolbar-actions-main">
+                        <button class="btn btn-primary" id="btnAddStudent">Thêm</button>
+                        <!-- nút sửa đổi: mặc định xanh lá, khi vào select-mode sẽ trắng viền đỏ -->
+                        <button class="btn btn-edit" id="btnToggleEditMode">Sửa đổi</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THANH 3 NÚT SỬA / XÓA – hiện khi đang chỉnh sửa -->
+            <div class="edit-actions" id="editActions">
+                <button class="btn btn-secondary" id="btnEditStudent">Sửa</button>
+                <button class="btn btn-danger" id="btnDeleteStudent">Xóa</button>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="select-col"></th>
+                            <th>MSSV</th>
+                            <th>Họ tên</th>
+                            <th>Lớp</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="studentTableBody">
+                        <tr>
+                            <td class="select-cell">
+                                <input type="checkbox" class="row-select-checkbox">
+                            </td>
+                            <td>HS001</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>10A1</td>
+                            <td>01/01/2008</td>
+                            <td>Nam</td>
+                            <td>TP. HCM</td>
+                            <td>0901 234 567</td>
+                        </tr>
+
+                        <tr>
+                            <td class="select-cell">
+                                <input type="checkbox" class="row-select-checkbox">
+                            </td>
+                            <td>HS002</td>
+                            <td>Trần Thị B</td>
+                            <td>10A1</td>
+                            <td>15/03/2008</td>
+                            <td>Nữ</td>
+                            <td>TP. HCM</td>
+                            <td>0902 345 678</td>
+                        </tr>
+
+                        <tr>
+                            <td class="select-cell">
+                                <input type="checkbox" class="row-select-checkbox">
+                            </td>
+                            <td>HS003</td>
+                            <td>Lê Văn C</td>
+                            <td>10A2</td>
+                            <td>25/07/2008</td>
+                            <td>Nam</td>
+                            <td>Đồng Nai</td>
+                            <td>0903 456 789</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="pagination">
+                <a href="#" class="page-link disabled">«</a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link">»</a>
+            </div>
+
+        </div><!-- content -->
+    </div><!-- main -->
+
+    <!-- ========== POPUP THÊM ========== -->
+    <div class="modal-overlay" id="addStudentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Thêm học sinh</h2>
+                <button class="modal-close" id="closeAddModalBtn">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form id="addStudentForm">
+                    <div class="modal-grid">
+                        <div class="form-group">
+                            <label>Họ tên</label>
+                            <input type="text" id="fullNameAdd">
+                        </div>
+
+                        <div class="form-group">
+                            <label>MSSV</label>
+                            <input type="text" id="studentIdAdd">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ngày sinh</label>
+                            <input type="date" id="dobAdd">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Lớp</label>
+                            <input type="text" id="classNameAdd">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input type="text" id="phoneAdd">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Giới tính</label>
+                            <select id="genderAdd">
+                                <option value="">-- Chọn --</option>
+                                <option>Nam</option>
+                                <option>Nữ</option>
+                                <option>Khác</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group-full">
+                            <label>Địa chỉ</label>
+                            <input type="text" id="addressAdd">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" id="btnCancelAdd">Hủy</button>
+                        <button class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== POPUP SỬA ========== -->
+    <div class="modal-overlay" id="editStudentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Sửa học sinh</h2>
+                <button class="modal-close" id="closeEditModalBtn">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form id="editStudentForm">
+                    <div class="modal-grid">
+                        <div class="form-group">
+                            <label>Họ tên</label>
+                            <input type="text" id="fullNameEdit">
+                        </div>
+
+                        <div class="form-group">
+                            <label>MSSV</label>
+                            <input type="text" id="studentIdEdit">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ngày sinh</label>
+                            <input type="date" id="dobEdit">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Lớp</label>
+                            <input type="text" id="classNameEdit">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input type="text" id="phoneEdit">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Giới tính</label>
+                            <select id="genderEdit">
+                                <option value="">-- Chọn --</option>
+                                <option>Nam</option>
+                                <option>Nữ</option>
+                                <option>Khác</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group-full">
+                            <label>Địa chỉ</label>
+                            <input type="text" id="addressEdit">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" id="btnCancelEdit">Hủy</button>
+                        <button class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== POPUP XÓA ========== -->
+    <div class="modal-overlay" id="deleteStudentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Xóa học sinh</h2>
+                <button class="modal-close" id="closeDeleteModalBtn">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p id="deleteMessage">Bạn có chắc chắn muốn xóa học sinh này không?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" id="btnCancelDelete">Hủy</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmDelete">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== SCRIPT ======================== -->
+    <script>
+        const tableBody   = document.getElementById('studentTableBody');
+        const rows        = tableBody.querySelectorAll('tr');
+        const checkboxes  = tableBody.querySelectorAll('.row-select-checkbox');
+
+        const btnAdd      = document.getElementById('btnAddStudent');
+        const btnToggle   = document.getElementById('btnToggleEditMode');
+        const btnEdit     = document.getElementById('btnEditStudent');
+        const btnDelete   = document.getElementById('btnDeleteStudent');
+
+        let selectedRow   = null;
+        let selectModeOn  = false;
+
+        function resetSelection() {
+            selectedRow = null;
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                cb.closest('tr').classList.remove('row-selected');
+            });
+        }
+
+        function enterSelectMode() {
+            selectModeOn = true;
+            document.body.classList.add('select-mode');
+            btnToggle.classList.add('btn-toggle-active'); // sẽ thành trắng viền đỏ nhờ CSS
+            resetSelection();
+        }
+
+        function exitSelectMode() {
+            selectModeOn = false;
+            document.body.classList.remove('select-mode');
+            btnToggle.classList.remove('btn-toggle-active'); // trở lại màu xanh lá
+            resetSelection();
+        }
+
+        btnToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (selectModeOn) exitSelectMode();
+            else enterSelectMode();
+        });
+
+        // Checkbox: chỉ cho 1 dòng được chọn, chỉ hoạt động khi đang select-mode
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                if (!selectModeOn) {
+                    cb.checked = false;
+                    return;
+                }
+                if (cb.checked) {
+                    checkboxes.forEach(other => {
+                        if (other !== cb) {
+                            other.checked = false;
+                            other.closest('tr').classList.remove('row-selected');
+                        }
+                    });
+                    selectedRow = cb.closest('tr');
+                    selectedRow.classList.add('row-selected');
+                } else {
+                    cb.closest('tr').classList.remove('row-selected');
+                    if (selectedRow === cb.closest('tr')) selectedRow = null;
+                }
+            });
+        });
+
+        // Click cả dòng để toggle checkbox (khi đang select-mode)
+        rows.forEach(row => {
+            row.addEventListener('click', (e) => {
+                if (!selectModeOn) return;
+                if (e.target.classList.contains('row-select-checkbox')) return;
+
+                const cb = row.querySelector('.row-select-checkbox');
+                cb.checked = !cb.checked;
+                cb.dispatchEvent(new Event('change'));
+            });
+        });
+
+        // Chuyển dd/MM/yyyy -> yyyy-MM-dd
+        function formatDateForInput(dmy) {
+            const parts = dmy.split('/');
+            if (parts.length !== 3) return '';
+            const [d, m, y] = parts;
+            return `${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`;
+        }
+
+        /* ========= POPUP THÊM ========= */
+        const addModal = document.getElementById('addStudentModal');
+        const addForm  = document.getElementById('addStudentForm');
+
+        btnAdd.addEventListener('click', (e) => {
+            e.preventDefault();
+            addModal.classList.add('show');
+        });
+
+        document.getElementById('closeAddModalBtn').onclick =
+        document.getElementById('btnCancelAdd').onclick = () => {
+            addModal.classList.remove('show');
+            addForm.reset();
+        };
+
+        addModal.addEventListener('click', (e) => {
+            if (e.target === addModal) {
+                addModal.classList.remove('show');
+                addForm.reset();
+            }
+        });
+
+        addForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // TODO: gửi dữ liệu lên server thêm học sinh
+            alert('Đã nhấn Lưu (Thêm) – demo UI, chưa kết nối DB.');
+            addModal.classList.remove('show');
+            addForm.reset();
+        });
+
+        /* ========= POPUP SỬA ========= */
+        const editModal = document.getElementById('editStudentModal');
+        const editForm  = document.getElementById('editStudentForm');
+
+        btnEdit.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if (!selectModeOn) {
+                alert('Hãy bấm "Sửa đổi" và chọn một học sinh trước.');
+                return;
+            }
+            if (!selectedRow) {
+                alert('Vui lòng chọn một học sinh để sửa.');
+                return;
+            }
+
+            const cells = selectedRow.querySelectorAll('td');
+            document.getElementById('studentIdEdit').value = cells[1].textContent.trim();
+            document.getElementById('fullNameEdit').value  = cells[2].textContent.trim();
+            document.getElementById('classNameEdit').value = cells[3].textContent.trim();
+            document.getElementById('dobEdit').value       = formatDateForInput(cells[4].textContent.trim());
+            document.getElementById('genderEdit').value    = cells[5].textContent.trim();
+            document.getElementById('addressEdit').value   = cells[6].textContent.trim();
+            document.getElementById('phoneEdit').value     = cells[7].textContent.trim();
+
+            editModal.classList.add('show');
+        });
+
+        document.getElementById('closeEditModalBtn').onclick =
+        document.getElementById('btnCancelEdit').onclick = () => {
+            editModal.classList.remove('show');
+            editForm.reset();
+        };
+
+        editModal.addEventListener('click', (e) => {
+            if (e.target === editModal) {
+                editModal.classList.remove('show');
+                editForm.reset();
+            }
+        });
+
+        editForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // TODO: gửi dữ liệu cập nhật lên server
+            alert('Đã nhấn Lưu (Sửa) – demo UI, chưa kết nối DB.');
+            editModal.classList.remove('show');
+            editForm.reset();
+            exitSelectMode(); // sau khi sửa xong thì thoát chế độ chỉnh sửa
+        });
+
+        /* ========= POPUP XÓA ========= */
+        const deleteModal   = document.getElementById('deleteStudentModal');
+        const deleteMessage = document.getElementById('deleteMessage');
+
+        btnDelete.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if (!selectModeOn) {
+                alert('Hãy bấm "Sửa đổi" và chọn một học sinh trước.');
+                return;
+            }
+            if (!selectedRow) {
+                alert('Vui lòng chọn một học sinh để xóa.');
+                return;
+            }
+
+            const cells = selectedRow.querySelectorAll('td');
+            const mssv  = cells[1].textContent.trim();
+            const name  = cells[2].textContent.trim();
+
+            deleteMessage.textContent =
+                `Bạn có chắc chắn muốn xóa học sinh ${name} (MSSV: ${mssv}) không?`;
+
+            deleteModal.classList.add('show');
+        });
+
+        document.getElementById('closeDeleteModalBtn').onclick =
+        document.getElementById('btnCancelDelete').onclick = () => {
+            deleteModal.classList.remove('show');
+        };
+
+        deleteModal.addEventListener('click', (e) => {
+            if (e.target === deleteModal) {
+                deleteModal.classList.remove('show');
+            }
+        });
+
+        document.getElementById('btnConfirmDelete').onclick = () => {
+            // TODO: gọi API xóa học sinh
+            alert('Đã nhấn Xóa – demo UI, chưa kết nối DB.');
+            deleteModal.classList.remove('show');
+            exitSelectMode(); // sau khi xóa xong thì thoát chế độ chỉnh sửa
+        };
+    </script>
+
+</body>
+</html>

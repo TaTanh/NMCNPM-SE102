@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhập điểm – Chọn lớp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="assets/uit_logo.png" alt="UIT Logo">
+            <span>QL Học Sinh</span>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="students.html">Quản lý học sinh</a>
+            <a href="subject_list.html">Quản lý môn học</a>
+            <a href="grade_select.html" class="active">Nhập điểm</a>
+            <a href="teaching_assignment.html">Phân công</a>
+            <a href="rules.html">Quy định</a>
+        </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- HEADER -->
+        <header class="topbar">
+            <div class="page-title">Nhập điểm</div>
+            <div class="user-info">
+                <span>Xin chào, Admin</span>
+                <img src="assets/user.png" class="avatar" alt="user">
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- Filters: khối + lớp -->
+            <div class="filters-row">
+                <div class="filter-item">
+                    <label class="filter-label" for="gradeSelect">Khối</label>
+                    <select id="gradeSelect">
+                        <option>Chọn khối</option>
+                        <option>Khối 10</option>
+                        <option>Khối 11</option>
+                        <option>Khối 12</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label class="filter-label" for="classSelect">Lớp</label>
+                    <select id="classSelect">
+                        <option>Chọn lớp</option>
+                        <option>10A1</option>
+                        <option>10A2</option>
+                        <option>10A3</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Bảng danh sách môn -->
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Mã môn</th>
+                            <th>Tên môn</th>
+                            <th>Số tiết</th>
+                            <th>Học kỳ</th>
+                            <th style="width: 120px; text-align: right;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MH001</td>
+                            <td>Toán</td>
+                            <td>60</td>
+                            <td>HKI</td>
+                            <td style="text-align: right;">
+                                <a href="grades_detail.html" class="btn btn-primary" style="padding:6px 14px; font-size:14px;">Nhập điểm</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>MH002</td>
+                            <td>Vật lý</td>
+                            <td>45</td>
+                            <td>HKI</td>
+                            <td style="text-align: right;">
+                                <a href="grades_detail.html" class="btn btn-primary" style="padding:6px 14px; font-size:14px;">Nhập điểm</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>MH003</td>
+                            <td>Ngữ văn</td>
+                            <td>60</td>
+                            <td>HKII</td>
+                            <td style="text-align: right;">
+                                <a href="grades_detail.html" class="btn btn-primary" style="padding:6px 14px; font-size:14px;">Nhập điểm</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div><!-- content -->
+    </div><!-- main -->
+
+</body>
+</html>
