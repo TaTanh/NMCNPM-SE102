@@ -24,8 +24,6 @@
             <a href="teaching_assignment.html">Phân công</a>
             <a href="rules.html">Quy định</a>
         </nav>
-
-
     </aside>
 
     <!-- MAIN -->
@@ -43,6 +41,7 @@
         <!-- CONTENT -->
         <div class="content">
 
+            <!-- TOOLBAR: search trái, nút phải (giống trang học sinh, bỏ Xuất Excel) -->
             <div class="toolbar">
                 <div class="search-box">
                     <input type="text" placeholder="Tìm theo tên hoặc mã môn...">
@@ -50,39 +49,59 @@
 
                 <div class="toolbar-actions">
                     <div class="toolbar-actions-main">
-                        <button class="btn btn-primary">Thêm</button>
-                        <button class="btn btn-outline">Sửa</button>
-                        <button class="btn btn-danger">Xóa</button>
+                        <button class="btn btn-primary" id="btnAddSubject">Thêm</button>
+                        <!-- nút Sửa đổi: dùng class .btn-edit để dùng lại style như trang học sinh -->
+                        <button class="btn btn-edit" id="btnToggleEditMode">Sửa đổi</button>
                     </div>
                 </div>
             </div>
 
+            <!-- THANH 2 NÚT SỬA / XÓA – ẩn, chỉ hiện khi bấm Sửa đổi -->
+            <div class="edit-actions" id="editActions">
+                <button class="btn btn-secondary" id="btnEditSubject">Sửa</button>
+                <button class="btn btn-danger" id="btnDeleteSubject">Xóa</button>
+            </div>
+
+            <!-- TABLE -->
             <div class="table-wrapper">
                 <table class="data-table">
                     <thead>
                         <tr>
+                            <th class="select-col"></th>
                             <th>Mã môn</th>
                             <th>Tên môn</th>
                             <th>Số tiết</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="subjectTableBody">
                         <tr>
+                            <td class="select-cell">
+                                <input type="checkbox" class="row-select-checkbox">
+                            </td>
                             <td>MH001</td>
                             <td>Toán</td>
                             <td>60</td>
                         </tr>
                         <tr>
+                            <td class="select-cell">
+                                <input type="checkbox" class="row-select-checkbox">
+                            </td>
                             <td>MH002</td>
                             <td>Vật lý</td>
                             <td>45</td>
                         </tr>
                         <tr>
+                            <td class="select-cell">
+                                <input type="checkbox" class="row-select-checkbox">
+                            </td>
                             <td>MH003</td>
                             <td>Ngữ văn</td>
                             <td>60</td>
                         </tr>
                         <tr>
+                            <td class="select-cell">
+                                <input type="checkbox" class="row-select-checkbox">
+                            </td>
                             <td>MH004</td>
                             <td>Hóa học</td>
                             <td>45</td>
@@ -93,6 +112,121 @@
 
         </div><!-- content -->
     </div><!-- main -->
+
+    <!-- SCRIPT: chế độ Sửa đổi + chọn môn giống trang học sinh, nhưng chỉ alert demo -->
+    <script>
+        const tableBody   = document.getElementById('subjectTableBody');
+        const rows        = tableBody.querySelectorAll('tr');
+        const checkboxes  = tableBody.querySelectorAll('.row-select-checkbox');
+
+        const btnToggle   = document.getElementById('btnToggleEditMode');
+        const btnEdit     = document.getElementById('btnEditSubject');
+        const btnDelete   = document.getElementById('btnDeleteSubject');
+
+        let selectedRow   = null;
+        let selectModeOn  = false;
+
+        function resetSelection() {
+            selectedRow = null;
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                cb.closest('tr').classList.remove('row-selected');
+            });
+        }
+
+        function enterSelectMode() {
+            selectModeOn = true;
+            document.body.classList.add('select-mode');       // dùng lại CSS đã có
+            btnToggle.classList.add('btn-toggle-active');     // đổi style nút Sửa đổi
+            resetSelection();
+        }
+
+        function exitSelectMode() {
+            selectModeOn = false;
+            document.body.classList.remove('select-mode');
+            btnToggle.classList.remove('btn-toggle-active');
+            resetSelection();
+        }
+
+        btnToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (selectModeOn) exitSelectMode();
+            else enterSelectMode();
+        });
+
+        // Checkbox: chỉ cho chọn 1 dòng khi đang ở chế độ sửa đổi
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                if (!selectModeOn) {
+                    cb.checked = false;
+                    return;
+                }
+                if (cb.checked) {
+                    checkboxes.forEach(other => {
+                        if (other !== cb) {
+                            other.checked = false;
+                            other.closest('tr').classList.remove('row-selected');
+                        }
+                    });
+                    selectedRow = cb.closest('tr');
+                    selectedRow.classList.add('row-selected');
+                } else {
+                    cb.closest('tr').classList.remove('row-selected');
+                    if (selectedRow === cb.closest('tr')) selectedRow = null;
+                }
+            });
+        });
+
+        // Click cả dòng để toggle checkbox (khi đang select-mode)
+        rows.forEach(row => {
+            row.addEventListener('click', (e) => {
+                if (!selectModeOn) return;
+                if (e.target.classList.contains('row-select-checkbox')) return;
+
+                const cb = row.querySelector('.row-select-checkbox');
+                cb.checked = !cb.checked;
+                cb.dispatchEvent(new Event('change'));
+            });
+        });
+
+        // Demo hành vi khi bấm Sửa / Xóa (hiện tại chỉ alert, chưa có popup)
+        btnEdit.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!selectModeOn) {
+                alert('Hãy bấm "Sửa đổi" và chọn một môn học trước.');
+                return;
+            }
+            if (!selectedRow) {
+                alert('Vui lòng chọn một môn học để sửa.');
+                return;
+            }
+            const cells = selectedRow.querySelectorAll('td');
+            const maMon = cells[1].textContent.trim();
+            const tenMon = cells[2].textContent.trim();
+            alert(`(DEMO) Sửa môn: ${tenMon} (Mã: ${maMon})`);
+        });
+
+        btnDelete.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!selectModeOn) {
+                alert('Hãy bấm "Sửa đổi" và chọn một môn học trước.');
+                return;
+            }
+            if (!selectedRow) {
+                alert('Vui lòng chọn một môn học để xóa.');
+                return;
+            }
+            const cells = selectedRow.querySelectorAll('td');
+            const maMon = cells[1].textContent.trim();
+            const tenMon = cells[2].textContent.trim();
+            const ok = confirm(`(DEMO) Bạn có chắc muốn xóa môn ${tenMon} (Mã: ${maMon}) không?`);
+            if (ok) {
+                // Demo: chỉ xóa trên giao diện
+                selectedRow.remove();
+                exitSelectMode();
+            }
+        });
+    </script>
 
 </body>
 </html>
