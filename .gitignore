@@ -5,7 +5,7 @@
 # Thư mục cài đặt package
 node_modules/
 
-# Lock file (tùy dự án, có thể giữ hoặc bỏ; ở đây bỏ cho gọn)
+# Lock file 
 package-lock.json
 
 # ============================
