@@ -514,7 +514,10 @@ body {
     font-size: 14px;
     border-radius: 999px;
     min-width: 110px;
+    text-decoration: none;     
+    text-align: center;       
 }
+
 
 /* pagination */
 .pagination {
