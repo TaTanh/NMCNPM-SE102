@@ -5,7 +5,7 @@
     <title>Đăng ký tài khoản</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Dùng lại CSS của login -->
-    <link rel="stylesheet" href="login_styles.css">
+    <link rel="stylesheet" href="/layout/login_styles.css">
 </head>
 <body class="auth-body">
 
@@ -15,7 +15,7 @@
     <div class="auth-center">
         <div class="auth-card">
             <div class="auth-logo">
-                <img src="assets/uit_logo.png" alt="UIT Logo" class="logo-img">
+                <img src="/assets/uit_logo.png" alt="UIT Logo" class="logo-img">
                 <h1 class="auth-title">Tạo tài khoản hệ thống</h1>
             </div>
 
@@ -55,7 +55,7 @@
 
             <div class="social-row">
                 <button type="button" class="social-btn social-google">
-                    <img src="assets/google.png" class="social-icon" alt="Google">
+                    <img src="/assets/google.png" class="social-icon" alt="Google">
                     <span>Google</span>
                 </button>
 
@@ -64,7 +64,7 @@
             <!-- Footer: quay lại login -->
             <div class="auth-footer">
                 <span>Đã có tài khoản?</span>
-                <a href="login.html">Đăng nhập</a>
+                <a href="/pages/login.html">Đăng nhập</a>
             </div>
         </div>
     </div>
@@ -74,10 +74,10 @@
         const bg = document.getElementById('authBg');
 
         const heroImages = [
-            'assets/a1.jpg',
-            'assets/a2.jpg',
-            'assets/a3.jpg',
-            'assets/a4.jpg'
+            '/assets/a1.jpg',
+            '/assets/a2.jpg',
+            '/assets/a3.jpg',
+            '/assets/a4.jpg'
         ];
 
         let currentIndex = 0;

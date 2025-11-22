@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Đăng nhập hệ thống quản lý học sinh</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login_styles.css">
+    <link rel="stylesheet" href="/layout/login_styles.css">
 </head>
 <body class="auth-body">
 
@@ -18,7 +18,7 @@
 
             <!-- Logo & Tiêu đề -->
             <div class="auth-logo">
-                <img src="assets/uit_logo.png" class="logo-img" alt="UIT Logo">
+                <img src="/assets/uit_logo.png" class="logo-img" alt="UIT Logo">
                 <div class="auth-title">Hệ thống quản lý học sinh</div>
             </div>
 
@@ -55,7 +55,7 @@
                 <!-- Google Login -->
                 <div class="social-row">
                     <button type="button" class="social-btn social-google">
-                        <img src="assets/google.png" class="social-icon" alt="Google">
+                        <img src="/assets/google.png" class="social-icon" alt="Google">
                         <span>Google</span>
                     </button>
                 </div>
@@ -63,7 +63,7 @@
                 <!-- Footer: Đăng ký -->
                 <div class="auth-footer">
                     <span>Chưa có tài khoản?</span>
-                    <a href="register.html">Đăng ký</a>
+                    <a href="/pages/register.html">Đăng ký</a>
                 </div>
 
                 
@@ -77,10 +77,10 @@
         const bg = document.getElementById('authBg');
 
         const heroImages = [
-            'assets/a1.jpg',
-            'assets/a2.jpg',
-            'assets/a3.jpg',
-            'assets/a4.jpg'
+            '/assets/a1.jpg',
+            '/assets/a2.jpg',
+            '/assets/a3.jpg',
+            '/assets/a4.jpg'
         ];
 
         let currentIndex = 0;

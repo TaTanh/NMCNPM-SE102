@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Danh sách học sinh</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/layout/styles.css">
 </head>
 
 <body class="dashboard-body">
@@ -12,16 +12,16 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <img src="assets/uit_logo.png" alt="UIT Logo">
+            <img src="/assets/uit_logo.png" alt="UIT Logo">
             <span>QL Học Sinh</span>
         </div>
 
         <nav class="sidebar-menu">
-            <a href="dashboard.html">Dashboard</a>
-            <a href="students.html" class="active">Quản lý học sinh</a>
-            <a href="subject_list.html">Quản lý môn học</a>
-            <a href="grade_select.html">Nhập điểm</a>
-            <a href="teaching_assignment.html">Phân công</a>
+            <a href="/pages/dashboard.html">Dashboard</a>
+            <a href="/pages/students.html" class="active">Quản lý học sinh</a>
+            <a href="/pages/subject_list.html">Quản lý môn học</a>
+            <a href="/pages/grade_select.html">Nhập điểm</a>
+            <a href="/pages/teaching_assignment.html">Phân công</a>
         </nav>
 
     </aside>
@@ -34,7 +34,7 @@
             <div class="page-title">Danh sách học sinh</div>
             <div class="user-info">
                 <span>Xin chào, Admin</span>
-                <img src="assets/user.png" class="avatar" alt="user">
+                <img src="/assets/user.png" class="avatar" alt="user">
             </div>
         </header>
 
@@ -44,7 +44,7 @@
             <!-- TOOLBAR: search trái, nút phải -->
             <div class="toolbar">
                 <div class="search-box">
-                    <input type="text" placeholder="Tìm theo tên hoặc MSSV...">
+                    <input type="text" placeholder="Tìm theo tên hoặc mã học sinh...">
                 </div>
 
                 <div class="toolbar-actions">
@@ -70,7 +70,7 @@
                     <thead>
                         <tr>
                             <th class="select-col"></th>
-                            <th>MSSV</th>
+                            <th>Mã học sinh</th>
                             <th>Họ tên</th>
                             <th>Lớp</th>
                             <th>Ngày sinh</th>
@@ -152,7 +152,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>MSSV</label>
+                            <label>Mã học sinh</label>
                             <input type="text" id="studentIdAdd">
                         </div>
 
@@ -213,7 +213,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>MSSV</label>
+                            <label>Mã học sinh</label>
                             <input type="text" id="studentIdEdit">
                         </div>
 
@@ -462,7 +462,7 @@
             const name  = cells[2].textContent.trim();
 
             deleteMessage.textContent =
-                `Bạn có chắc chắn muốn xóa học sinh ${name} (MSSV: ${mssv}) không?`;
+                `Bạn có chắc chắn muốn xóa học sinh ${name} (Mã học sinh: ${mssv}) không?`;
 
             deleteModal.classList.add('show');
         });

@@ -230,7 +230,7 @@ body {
     inset: 0;
     z-index: -1;
 
-    background-image: url("assets/a4.jpg"); 
+    background-image: url("/assets/a4.jpg"); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
